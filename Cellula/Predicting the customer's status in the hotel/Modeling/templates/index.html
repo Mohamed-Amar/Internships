@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Forest Classifier</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #333;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .login {
+      width: 400px;
+      margin: 50px auto;
+      background: #222;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2ecc71;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 15px;
+    }
+
+    label {
+      color: #bbb;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #555;
+      border-radius: 5px;
+      background-color: #444;
+      color: #fff;
+      min-width: 150px;
+      max-width: 300px;
+    }
+
+    input[type="submit"] {
+      width: 1000px;
+      grid-column: span 2;
+      background-color: #2ecc71;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #27ae60;
+    }
+
+    .details {
+      font-style: initial;
+      color: #999;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      border: 1px solid #2ecc71;
+      border-radius: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login">
+    <h1>Random Forest Classifier</h1>
+    <form name="myForm" action="{{ url_for('predict') }}" method="post" onsubmit="return validateForm()">
+
+      <label for="meal">Meal:</label>
+      <select name="meal" id="meal" required>
+        <option value="2" label="Not Selected">Not Selected</option>
+        <option value="0" label="Meal Plan 1">Meal Plan 1</option>
+        <option value="1" label="Meal Plan 2">Meal Plan 2</option>
+      </select>
+
+      <label for="parking">Parking:</label>
+      <select name="parking" id="parking" required>
+        <option value="1" label="Yes">Yes</option>
+        <option value="0" label="No">No</option>
+      </select>
+
+      <label for="room_type">Room Type:</label>
+      <select name="room_type" id="room_type" required>
+        <option value="0" label="Room_Type 1">Room_Type 1</option>
+        <option value="2" label="Room_Type 4">Room_Type 4</option>
+        <option value="3" label="Room_Type 5">Room_Type 5</option>
+        <option value="4" label="Room_Type 6">Room_Type 6</option>
+        <option value="1" label="Room_Type 2">Room_Type 2</option>
+        <option value="5" label="Room_Type 7">Room_Type 7</option>
+      </select>
+
+      <label for="lead_time">Lead Time:</label>
+      <input type="number" name="lead_time" required>
+
+      <label for="market">Market:</label>
+      <select name="market" id="market" required>
+        <option value="2" label="Online">Online</option>
+        <option value="1" label="Offline">Offline</option>
+        <option value="0" label="Corporate">Corporate</option>
+      </select>
+
+      <label for="repeated">Repeated:</label>
+      <input type="number" name="repeated" required>
+
+      <label for="canceled_book">Canceled Book:</label>
+      <input type="number" name="canceled_book" required>
+
+      <label for="price">Price:</label>
+      <input type="number" name="price" required>
+
+      <label for="special_requests">Special Requests:</label>
+      <input type="number" name="special_requests" required>
+
+      <label for="num_of_people">Number of People:</label>
+      <input type="number" name="num_of_people" required>
+
+      <label for="nights">Nights:</label>
+      <input type="number" name="nights" required>
+
+      <input type="submit" value="Predict">
+
+    </form>
+    <br>
+    <br><br>
+    <div class="details">
+      {{ prediction_text }}
+    </div>
+  </div>
+</body>
+
+</html>
